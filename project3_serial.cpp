@@ -15,24 +15,24 @@ class HashTable
     public:
         std::vector<T> values1;
         std::vector<T> values2;
-        int size;
+        int sizeOfTable;
 
-        HashTable (int size)
+        HashTable (int sizeOfTable)
         {
-            this->size = size;
-            values1.assign(size, NULL);
-            values2.assign(size, NULL);
+            this->sizeOfTable = sizeOfTable;
+            values1.assign(sizeOfTable, NULL);
+            values2.assign(sizeOfTable, NULL);
         }
 
         int hash (T x, int nm)
         {
-            return (int)nm%x%size;
+            return (int)nm%x%sizeOfTable;
         }
 
         bool contains (T x)
         {
             int hash1 = hash(x, 2147483647);
-            int hash2 = hash(x, 2147483646);
+            int hash2 = hash(x, 479001599);
             if (values1.at(hash1) == x)
             {
                 return true;
@@ -44,12 +44,12 @@ class HashTable
             return false;
         }
 
-        //double the size of both table
+        //double the sizeOfTable of both table
         void resize ()
         {
-            size = 2*size;
-            values1.resize(size*2, NULL);
-            values2.resize(size*2, NULL);
+            sizeOfTable = 2*sizeOfTable;
+            values1.resize(sizeOfTable*2, NULL);
+            values2.resize(sizeOfTable*2, NULL);
         }
 
         //swap value
@@ -77,9 +77,9 @@ class HashTable
             {
                 return false;
             }
-            int LIMIT =  size/2;
-            int hash1 = hash(x, 2147483647);
-            int hash2 = hash(x, 2147483646);
+            int LIMIT =  sizeOfTable/2;
+            int hash1 = hash(x, 2147483647); //suprisely, this is a prime number
+            int hash2 = hash(x, 479001599); // another prime number
             int tableToInsert = hash1%2+1; //1 or 2, randomly select the first table to insert
             for (int i = 0; i < LIMIT; i++)
             {
@@ -108,18 +108,67 @@ class HashTable
             return add(x);
         }
 
+        bool remove(T x)
+        {
+            int hash1 = hash(x, 2147483647); 
+            int hash2 = hash(x, 479001599);
+            if (values1.at(hash1) == x)
+            {
+                swap(NULL, hash1, 1);
+                return true;
+            }
+            else if(values2.at(hash2) == x)
+            {
+                swap(NULL, hash2, 2);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+        int size()
+        {
+            int count = 0;
+            for (typename std::vector<T>::iterator it = values1.begin() ; it != values1.end(); ++it)
+            {
+                if (*it != NULL){
+                    count ++;
+                }
+            }
+            for (typename std::vector<T>::iterator it = values2.begin() ; it != values2.end(); ++it)
+            {
+                if (*it != NULL){
+                    count ++;
+                }
+            }
+            return count;
+        }
+
+        //unsafe -- only works for int hashtable
+        //populate integers from 1 to size
+        void populate(int size)
+        {
+            for (int i = 0; i < size; i++){
+                add(i);
+            }
+        }
+
 
 };
 
 int main(int argc, char** argv) 
 {
-    HashTable <int> a = HashTable<int>(51);
+    HashTable <int> a = HashTable<int>(5);
     a.add(3);
-    printf ("%d", a.size);
     a.add(4);
     a.add(5);
     a.add(6);
     a.add(7);
+    //a.add(8);
+   // a.add(9);
+    printf("%d", a.sizeOfTable);
 
     printf ("%d", a.values1[0]);
     printf ("%d", a.values1[1]);
@@ -131,8 +180,19 @@ int main(int argc, char** argv)
     printf ("%d", a.values2[2]);
     printf ("%d", a.values2[3]);
     printf ("%d", a.values2[4]);
-    // printf ("%d", a.contains(4));
-    // printf ("%d", a.contains(3));
-    // printf ("%d", a.contains(5));
+
+    printf ("%d", a.contains(4));
+    printf ("%d", a.contains(3));
+    printf ("%d", a.contains(5));
+    printf ("size%d", a.size());
+    printf ("%d", a.remove(4));
+    printf ("%d", a.remove(3));
+    printf ("%d", a.remove(5));
+    printf ("%d", a.contains(4));
+    printf ("%d", a.contains(3));
+    printf ("%d", a.contains(5));
+    printf ("size%d", a.size());
+    a.populate(10);
+    printf ("size%d", a.size());
 
 }
