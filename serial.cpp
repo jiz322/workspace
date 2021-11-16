@@ -192,7 +192,8 @@ int main(int argc, char** argv)
     printf("\ninit size is: %d",a.size());
     printf("\ninit table size is: %d",a.sizeOfTable);
 
-    printf("\nDoing Works");      
+    printf("\nDoing Works");  
+    auto begin = chrono::high_resolution_clock::now();    
     for (int i = 0; i < WORKS; i++){
         //10% add
         if (i % 10 ==9)
@@ -211,9 +212,18 @@ int main(int argc, char** argv)
             //printf("\n%d",c);
         }
     }
-
+    auto end = chrono::high_resolution_clock::now();
+    cout << "TOTAL EXECUTION TIME = "<<std::chrono::duration_cast<std::chrono::microseconds>(end-begin).count()<<"\n";
     //check size and table size
     printf("\nfinal size is: %d",a.size());
     printf("\nfinal table size is: %d",a.sizeOfTable);
+
+    //check contains 
+    //Should print 1 
+    printf("\n%d", a.contains(2*a.START+99));
+    //Should print 0 
+    printf("\n%d", a.contains(2*a.START+100));
+    //Should print 0 
+    printf("\n%d", a.contains(a.START+11));
 
 }
