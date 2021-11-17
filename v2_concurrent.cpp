@@ -229,25 +229,25 @@ class HashTable
                 int DEBUG = 0;
                 if (tableToInsert == 1)
                 {
-                    std::unique_lock<std::shared_timed_mutex> lock1 (*(mutexes1.at(l1)));
+                    //std::unique_lock<std::shared_timed_mutex> lock1 (*(mutexes1.at(l1)));
                     x = swap(x, hash1, 1);            
                     if (x == NULL)
                     {
                         return true;
                     }
-                    lock1.unlock();
+                    //lock1.unlock();
                     tableToInsert = 2;
                     
                 }
                 else //tableToInsert == 2
                 {
-                    std::unique_lock<std::shared_timed_mutex> lock2 (*(mutexes2.at(l2)));
+                    //std::unique_lock<std::shared_timed_mutex> lock2 (*(mutexes2.at(l2)));
                     x = swap(x, hash2, 2);
                     if (x == NULL)
                     {
                         return true;
                     }
-                    lock2.unlock();
+                    //lock2.unlock();
                     tableToInsert = 1;
                     
                 }
