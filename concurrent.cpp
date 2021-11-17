@@ -102,7 +102,7 @@ class HashTable
             std::shared_lock lock1 (*(mutexes1.at(l1)), std::defer_lock);
             std::shared_lock lock2 (*(mutexes2.at(l2)), std::defer_lock);
             
-            while (!lock1.try_lock());
+            printf("\n trylock value : %d", lock1.try_lock());
             if (values1.at(hash1) == x)
             {
                 return true;
