@@ -101,27 +101,15 @@ class HashTable
             int l2 = hash2 % NUM_LOCKS;
             std::shared_lock lock1 (*(mutexes1.at(l1)), std::defer_lock);
             std::shared_lock lock2 (*(mutexes2.at(l2)), std::defer_lock);
-            int flag = 1; //While loop indicator
-            while (flag) {
-                int f1 = lock1.try_lock();
-                int f3 = lock2.try_lock();
-                if (f1&f3 != 0){
-                    flag = 0; //proceed
-                }
-                else{	//unlock and wait
-                    if (f1 !=  0){
-                        lock1.unlock();
-                    }
-                    if (f3 != 0){
-                        lock2.unlock();
-                    }
-                }
-            }
+            
+            while (!lock1.try_lock());
             if (values1.at(hash1) == x)
             {
                 return true;
             }
-            else if (values2.at(hash2) == x)
+            lock1.unlock();
+            while (!lock2.try_lock());
+            if (values2.at(hash2) == x)
             {
                 return true;
             }
