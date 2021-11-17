@@ -280,13 +280,12 @@ int main(int argc, char** argv)
 
     //lmd for calling do works
     auto lmd = [&a](int begin, int work){
-        printf("\nbegin: %d", begin);
-        printf("\nwork: %d", work);
         for (int i = begin; i < begin + work; i++){
             //10% add
             if (i % 10 ==9)
             {
                 a.add(2*begin+i);
+                printf("\n add %d", 2*begin+i)
             }
             //10%remove
             //Unfair to this concurrent version,
@@ -306,14 +305,14 @@ int main(int argc, char** argv)
     };   
     vector<std::thread> threads;
     for (int i = 0; i < NUM_THREAD; i++){
-            printf("\n bf =  %d", i);
+
 			threads.push_back(std::thread (lmd, a.START+STEP*i, STEP));
-            printf("\n i =  %d", i);
+
 	}
 	for (auto &th : threads){
-        printf("\n bf join ");
+
 		th.join();
-		printf("\n after join ");
+
 	}
 
 
