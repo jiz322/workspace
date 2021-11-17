@@ -262,7 +262,7 @@ int main(int argc, char** argv)
     auto lmd = [&a](int begin, int work){
         printf("\nbegin: %d", begin);
         printf("\nwork: %d", work);
-        for (int i = 0; i < work; i++){
+        for (int i = begin; i < begin + work; i++){
             //10% add
             if (i % 10 ==9)
             {
