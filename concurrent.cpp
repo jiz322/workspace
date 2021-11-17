@@ -31,19 +31,19 @@ class HashTable
         int HASH2 = 479001599;
         int START = 100000000; //for populate table
         int NUM_LOCKS = 30;
-        vector<std::mutex> mutexes1;
-        vector<std::mutex> mutexes2;
+        vector<std::shared_mutex mutex_> mutexes1(10);
+        vector<std::shared_mutex mutex_> mutexes2(10);
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
-            for (int i = 0; i < NUM_LOCKS; i++)
-            {
-                mutable std::shared_mutex mutex_;
-                mutexes1.push_back( mutex_));
-                mutexes2.push_back( mutex_);
-            }
+            // for (int i = 0; i < NUM_LOCKS; i++)
+            // {
+            //     mutable std::shared_mutex mutex_;
+            //     mutexes1.push_back( mutex_));
+            //     mutexes2.push_back( mutex_);
+            // }
         }
 
         int hash (T x, int nm)
