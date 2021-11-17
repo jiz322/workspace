@@ -245,7 +245,7 @@ class HashTable
         {
             for (int i = 0; i < work; i++){
                 //10% add
-                if (i % 10 ==9)
+                if (i % 10 ==19)
                 {
                     add(2*begin+i);
                 }
@@ -253,7 +253,7 @@ class HashTable
                 //Unfair to this concurrent version,
                 //Since thread are not balance loaded
                 //first thread will remove succesfully whereas the rest can not.
-                else if (i % 10 == 1)
+                else if (i % 10 == 11)
                 {
                     remove(begin+i);
                 }
