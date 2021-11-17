@@ -99,7 +99,7 @@ class HashTable
             //Might be too conservative
             int l1 = hash1 % NUM_LOCKS;
             int l2 = hash2 % NUM_LOCKS;
-           std::lock_guard<std::mutex> lock1 (*(mutexes1.at(l1)));
+           //std::lock_guard<std::mutex> lock1 (*(mutexes1.at(l1)));
            //std::lock_guard<std::mutex> lock2 (*(mutexes2.at(l2)));
             if (values1.at(hash1) == x)
             {
