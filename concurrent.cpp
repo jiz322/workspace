@@ -241,31 +241,6 @@ class HashTable
             }
         }
 
-        void doWork(int begin, int work)
-        {
-            for (int i = 0; i < work; i++){
-                //10% add
-                if (i % 10 ==19)
-                {
-                    add(2*begin+i);
-                }
-                //10%remove
-                //Unfair to this concurrent version,
-                //Since thread are not balance loaded
-                //first thread will remove succesfully whereas the rest can not.
-                else if (i % 10 == 11)
-                {
-                    remove(begin+i);
-                }
-                //80% contains, always true in this serial one
-                else
-                {
-                    int c = contains(begin+i);
-                    //printf("\n%d",c);
-                }
-            }
-        }
-
 
 };
 
@@ -275,7 +250,7 @@ int main(int argc, char** argv)
     //Expected final size is about populated + (WORKS -  populated)/10
     int WORKS = 10000;
     int POPULATE = 10000;
-    int NUM_THREAD = 8;
+    int NUM_THREAD = 1;
     int STEP = WORKS/NUM_THREAD;
     HashTable <int> a = HashTable<int>(40000);
     printf("populating...");
