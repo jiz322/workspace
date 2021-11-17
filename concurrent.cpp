@@ -35,9 +35,9 @@ class HashTable
         vector<std::mutex> mutexes2;
         
         std::mutex *l1;
-        a = std::mutex *l2;
+        
         std::mutex l3;
-
+        std::mutex *l2 = &l3;
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
