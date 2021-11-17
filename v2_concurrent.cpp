@@ -343,7 +343,7 @@ int main(int argc, char** argv)
             if (i % 10 ==9)
             {
                 a.add(2*a.START+i);
-                printf("\n add %d", 2*a.START+i);
+                //printf("\n add %d", 2*a.START+i);
             }
             //10%remove
             //Unfair to this concurrent version,
