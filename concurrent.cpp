@@ -265,7 +265,7 @@ int main(int argc, char** argv)
     vector<std::thread> threads;
     for (int i = 0; i < NUM_THREAD; i++){
             
-			threads.push_back(std::thread (lmd));
+			threads.push_back(std::thread (lmd, a, a.START, WORKS));
 	}
 	for (auto &th : threads){
 		th.join();
