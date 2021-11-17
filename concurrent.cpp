@@ -31,34 +31,34 @@ class HashTable
         int HASH2 = 479001599;
         int START = 100000000; //for populate table
         int NUM_LOCKS =10;
-        vector<std::mutex*> mutexes1;
-        vector<std::mutex*> mutexes2;
+        vector<std::shared_timed_mutex*> mutexes1;
+        vector<std::shared_timed_mutex*> mutexes2;
 
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
-            std::mutex mtx1;
-            std::mutex mtx2;
-            std::mutex mtx3;
-            std::mutex mtx4;
-            std::mutex mtx5;
-            std::mutex mtx6;
-            std::mutex mtx7;
-            std::mutex mtx8;
-            std::mutex mtx9;
-            std::mutex mtx10;
-            std::mutex mtx11;
-            std::mutex mtx12;
-            std::mutex mtx13;
-            std::mutex mtx14;
-            std::mutex mtx15;
-            std::mutex mtx16;
-            std::mutex mtx17;
-            std::mutex mtx18;
-            std::mutex mtx19;
-            std::mutex mtx20;
+            std::shared_timed_mutex mtx1;
+            std::shared_timed_mutex mtx2;
+            std::shared_timed_mutex mtx3;
+            std::shared_timed_mutex mtx4;
+            std::shared_timed_mutex mtx5;
+            std::shared_timed_mutex mtx6;
+            std::shared_timed_mutex mtx7;
+            std::shared_timed_mutex mtx8;
+            std::shared_timed_mutex mtx9;
+            std::shared_timed_mutex mtx10;
+            std::shared_timed_mutex mtx11;
+            std::shared_timed_mutex mtx12;
+            std::shared_timed_mutex mtx13;
+            std::shared_timed_mutex mtx14;
+            std::shared_timed_mutex mtx15;
+            std::shared_timed_mutex mtx16;
+            std::shared_timed_mutex mtx17;
+            std::shared_timed_mutex mtx18;
+            std::shared_timed_mutex mtx19;
+            std::shared_timed_mutex mtx20;
             mutexes1.push_back( &mtx1);
             mutexes1.push_back( &mtx2);
             mutexes1.push_back( &mtx3);
@@ -99,8 +99,8 @@ class HashTable
             //Might be too conservative
             int l1 = hash1 % NUM_LOCKS;
             int l2 = hash2 % NUM_LOCKS;
-            std::lock_guard<std::mutex> lock1 (*(mutexes1.at(l1)));
-            //std::lock_guard<std::mutex> lock2 (*(mutexes2.at(l2)));
+            std::shared_lock lock1 (*(mutexes1.at(l1)));
+            std::shared_lock lock2 (*(mutexes2.at(l2)));
             if (values1.at(hash1) == x)
             {
                 return true;
