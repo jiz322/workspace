@@ -1,12 +1,21 @@
-#include <iostream>
-#include <vector>
+
 #include <math.h>
-#include <stdlib.h>
-#include <time.h>
 #include <algorithm>
-#include <chrono>
+#include <stdio.h>
+#include <random>
 #include <thread>
 #include <mutex>
+#include <shared_mutex> 
+#include <chrono>
+#include <future>
+#include <unistd.h>
+#include <iostream>
+#include <ctime>
+#include <vector>
+#include <cassert>
+#include <cstdlib>
+#include <string>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -250,7 +259,7 @@ int main(int argc, char** argv)
     printf("\nDoing Works");  
     auto begin = chrono::high_resolution_clock::now(); 
 
-    auto doWork = [](){
+    auto doWork = [&](){
         printf("try");
     };   
     vector<std::thread> threads;
