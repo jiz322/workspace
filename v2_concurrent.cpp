@@ -214,6 +214,7 @@ class HashTable
                         return true;
                     }
                     tableToInsert = 2;
+                    lock1.unlock();
                 }
                 else //tableToInsert == 2
                 {
@@ -224,6 +225,7 @@ class HashTable
                         return true;
                     }
                     tableToInsert = 1;
+                    lock2.unlock();
                 }
             }
             resize();
