@@ -259,13 +259,14 @@ int main(int argc, char** argv)
     printf("\nDoing Works");  
     auto begin = chrono::high_resolution_clock::now(); 
 
-    auto lmd = [=](HashTable<int> h, int begin, int work){
-        doWork(a, a.START, WORKS);
+    //lmd for calling do works
+    auto lmd = [&](HashTable<int> h, int begin, int work){
+        doWork(a, begin, work);
     };   
     vector<std::thread> threads;
     for (int i = 0; i < NUM_THREAD; i++){
             
-			threads.push_back(std::thread (lmd, a, a.START, WORKS));
+			threads.push_back(std::thread (lmd, a, a.START+STEP*i, STEP));
 	}
 	for (auto &th : threads){
 		th.join();
