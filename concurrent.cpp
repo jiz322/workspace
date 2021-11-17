@@ -31,8 +31,8 @@ class HashTable
         int HASH2 = 479001599;
         int START = 100000000; //for populate table
         int NUM_LOCKS = 30;
-        vector<std::mutex> mutexes1(NUM_LOCKS);
-        vector<std::mutex> mutexes2(NUM_LOCKS);
+        vector<std::mutex> mutexes(NUM_LOCKS);
+        //vector<std::mutex> mutexes2(NUM_LOCKS);
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
