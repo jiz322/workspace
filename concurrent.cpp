@@ -40,11 +40,12 @@ class HashTable
             this->sizeOfTable = sizeOfTable;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
-            for (int i = 0; i < NUM_LOCKS; i++)
-            {
-                mutexes1.push_back( std::mutex mutex1));
-                mutexes2.push_back( std::mutex mutex2);
-            }
+            l1 = (vector<std::mutex> *) = malloc(200);
+            // for (int i = 0; i < NUM_LOCKS; i++)
+            // {
+            //     // mutexes1.push_back( std::mutex mutex1));
+            //     // mutexes2.push_back( std::mutex mutex2);
+            // }
         }
 
         int hash (T x, int nm)
