@@ -54,15 +54,13 @@ class HashTable
             if (table == 1)
             {
                 T ret = values1.at(i);
-                values1.insert (values1.begin()+i, x);
-                values1.erase (values1.begin()+i+1);
+                values1.at(i) =  x;
                 return  ret;
             }
             else
             {
                 T ret = values2.at(i);
-                values2.insert (values2.begin()+i, x);
-                values2.erase (values2.begin()+i+1);
+                values2.at(i) =  x;
                 return  ret;
             }
         }
@@ -184,7 +182,7 @@ class HashTable
 int main(int argc, char** argv) 
 {
     //Expected final size is about populated + (WORKS -  populated)/10
-    int WORKS = 100000;
+    int WORKS = 11000;
     HashTable <int> a = HashTable<int>(4000);
     printf("populating...");
     a.populate(10000);
