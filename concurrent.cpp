@@ -31,60 +31,60 @@ class HashTable
         int HASH2 = 479001599;
         int START = 100000000; //for populate table
         int NUM_LOCKS =10;
-        // vector<std::mutex*> mutexes1;
-        // vector<std::mutex*> mutexes2;
+        vector<std::mutex*> mutexes1;
+        vector<std::mutex*> mutexes2;
 
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
-            // std::mutex mtx1;
-            // std::mutex mtx2;
-            // std::mutex mtx3;
-            // std::mutex mtx4;
-            // std::mutex mtx5;
-            // std::mutex mtx6;
-            // std::mutex mtx7;
-            // std::mutex mtx8;
-            // std::mutex mtx9;
-            // std::mutex mtx10;
-            // std::mutex mtx11;
-            // std::mutex mtx12;
-            // std::mutex mtx13;
-            // std::mutex mtx14;
-            // std::mutex mtx15;
-            // std::mutex mtx16;
-            // std::mutex mtx17;
-            // std::mutex mtx18;
-            // std::mutex mtx19;
-            // std::mutex mtx20;
-            // mutexes1.push_back( &mtx1);
-            // mutexes1.push_back( &mtx2);
-            // mutexes1.push_back( &mtx3);
-            // mutexes1.push_back( &mtx4);
-            // mutexes1.push_back( &mtx5);
-            // mutexes2.push_back( &mtx6);
-            // mutexes2.push_back( &mtx7);
-            // mutexes2.push_back( &mtx8);
-            // mutexes2.push_back( &mtx9);
-            // mutexes2.push_back( &mtx10);
-            // mutexes1.push_back( &mtx11);
-            // mutexes1.push_back( &mtx12);
-            // mutexes1.push_back( &mtx13);
-            // mutexes1.push_back( &mtx14);
-            // mutexes1.push_back( &mtx15);
-            // mutexes2.push_back( &mtx16);
-            // mutexes2.push_back( &mtx17);
-            // mutexes2.push_back( &mtx18);
-            // mutexes2.push_back( &mtx19);
-            // mutexes2.push_back( &mtx20);
-            // for (int i = 0; i < NUM_LOCKS; i++)
-            // {
+            std::mutex mtx1;
+            std::mutex mtx2;
+            std::mutex mtx3;
+            std::mutex mtx4;
+            std::mutex mtx5;
+            std::mutex mtx6;
+            std::mutex mtx7;
+            std::mutex mtx8;
+            std::mutex mtx9;
+            std::mutex mtx10;
+            std::mutex mtx11;
+            std::mutex mtx12;
+            std::mutex mtx13;
+            std::mutex mtx14;
+            std::mutex mtx15;
+            std::mutex mtx16;
+            std::mutex mtx17;
+            std::mutex mtx18;
+            std::mutex mtx19;
+            std::mutex mtx20;
+            mutexes1.push_back( &mtx1);
+            mutexes1.push_back( &mtx2);
+            mutexes1.push_back( &mtx3);
+            mutexes1.push_back( &mtx4);
+            mutexes1.push_back( &mtx5);
+            mutexes2.push_back( &mtx6);
+            mutexes2.push_back( &mtx7);
+            mutexes2.push_back( &mtx8);
+            mutexes2.push_back( &mtx9);
+            mutexes2.push_back( &mtx10);
+            mutexes1.push_back( &mtx11);
+            mutexes1.push_back( &mtx12);
+            mutexes1.push_back( &mtx13);
+            mutexes1.push_back( &mtx14);
+            mutexes1.push_back( &mtx15);
+            mutexes2.push_back( &mtx16);
+            mutexes2.push_back( &mtx17);
+            mutexes2.push_back( &mtx18);
+            mutexes2.push_back( &mtx19);
+            mutexes2.push_back( &mtx20);
+            for (int i = 0; i < NUM_LOCKS; i++)
+            {
                 
-            //     printf("\n%d", mutexes1.at(i));
+                printf("\n%d", mutexes1.at(i));
                 
-            // }
+            }
         }
 
         int hash (T x, int nm)
