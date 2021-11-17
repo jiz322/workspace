@@ -44,8 +44,8 @@ class HashTable
             l2 = (std::mutex *) malloc(NUM_LOCKS);
             for (int i = 0; i < NUM_LOCKS; i++)
             {
-                l1[i] = std::mutex mtx1;
-                l2[i] = std::mutex mtx2;
+                l1[i] = std::mutex;
+                l2[i] = std::mutex;
 
                 // mutexes1.push_back( std::mutex mutex1));
                 // mutexes2.push_back( std::mutex mutex2);
