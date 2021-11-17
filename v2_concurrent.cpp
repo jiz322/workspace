@@ -204,9 +204,6 @@ class HashTable
                 //why not dead lock here?
                 std::shared_lock<std::shared_timed_mutex> lock (mtx_resize);
                 
-                
-                lock1.lock();
-                lock2.lock();
                 int DEBUG = 0;
                 if (tableToInsert == 1)
                 {
