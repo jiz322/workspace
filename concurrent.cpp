@@ -39,10 +39,9 @@ class HashTable
             values2.assign(sizeOfTable, NULL);
             for (int i = 0; i < NUM_LOCKS; i++)
             {
-                lock_guard mtx1;
-                lock_guard mtx2;
-                mutexes1.push_back(mtx1);
-                mutexes2.push_back(mtx2);
+                
+                mutexes1.push_back(std::mutex mtx1);
+                mutexes2.push_back(std::mutex mtx2);
             }
         }
 
