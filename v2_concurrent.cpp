@@ -219,17 +219,16 @@ class HashTable
                 return false;
             }
             int LIMIT =  sizeOfTable/2;
-            int tableToInsert = hash(x, HASH1) % 2;
+            int tableToInsert = hash(x, HASH1) % 2; //can before resize lock since this value does not matter
             for (int i = 0; i < LIMIT; i++)
             {
+                std::shared_lock<std::shared_timed_mutex> lock (mtx_resize);
+
                 int hash1 = hash(x, HASH1); //a prime number
                 int hash2 = hash(x, HASH2); // another prime number
 
                 int l1 = x % NUM_LOCKS;
                 int l2 = x % NUM_LOCKS; //NB: maybe only one mutex is necessary
-
-                //why not dead lock here?
-                std::shared_lock<std::shared_timed_mutex> lock (mtx_resize);
                 
                 int DEBUG = 0;
                 if (tableToInsert == 1)
@@ -263,11 +262,12 @@ class HashTable
 
         bool remove(T x)
         {
+            std::shared_lock<std::shared_timed_mutex> lock (mtx_resize);  // Should before compute of hash
             int hash1 = hash(x, HASH1); 
             int hash2 = hash(x, HASH2);
             int l1 = x % NUM_LOCKS; //NB: maybe only one mutex is necessary
             int l2 = x % NUM_LOCKS;
-            std::shared_lock<std::shared_timed_mutex> lock (mtx_resize);
+            
             
             std::unique_lock lock1 (*(mutexes1.at(l1)));
             if (values1.at(hash1) == x)
