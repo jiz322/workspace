@@ -33,6 +33,8 @@ class HashTable
         int NUM_LOCKS = 30;
         vector<std::mutex> mutexes1;
         vector<std::mutex> mutexes2;
+        std::vector<std::mutex> list(count);
+        mutexes1.swap(list);
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
