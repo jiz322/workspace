@@ -140,26 +140,26 @@ class HashTable
         //have to compute 
         void resize ()
         {
-            std::unique_lock<std::shared_timed_mutex> lock1 (*(mutexes1.at(0))
-            std::unique_lock<std::shared_timed_mutex> lock2 (*(mutexes1.at(1))
-            std::unique_lock<std::shared_timed_mutex> lock3 (*(mutexes1.at(2))
-            std::unique_lock<std::shared_timed_mutex> lock4 (*(mutexes1.at(3))
-            std::unique_lock<std::shared_timed_mutex> lock5 (*(mutexes1.at(4))
-            std::unique_lock<std::shared_timed_mutex> lock6 (*(mutexes1.at(5))
-            std::unique_lock<std::shared_timed_mutex> lock7 (*(mutexes1.at(6))
-            std::unique_lock<std::shared_timed_mutex> lock8 (*(mutexes1.at(7))
-            std::unique_lock<std::shared_timed_mutex> lock9 (*(mutexes1.at(8))
-            std::unique_lock<std::shared_timed_mutex> lock10 (*(mutexes1.at(9))
-            std::unique_lock<std::shared_timed_mutex> lock11 (*(mutexes2.at(1))
-            std::unique_lock<std::shared_timed_mutex> lock12 (*(mutexes2.at(2))
-            std::unique_lock<std::shared_timed_mutex> lock13 (*(mutexes2.at(3))
-            std::unique_lock<std::shared_timed_mutex> lock14 (*(mutexes2.at(4))
-            std::unique_lock<std::shared_timed_mutex> lock15 (*(mutexes2.at(5))
-            std::unique_lock<std::shared_timed_mutex> lock16 (*(mutexes2.at(6))
-            std::unique_lock<std::shared_timed_mutex> lock17 (*(mutexes2.at(7))
-            std::unique_lock<std::shared_timed_mutex> lock18 (*(mutexes2.at(8))
-            std::unique_lock<std::shared_timed_mutex> lock19 (*(mutexes2.at(9))
-            std::unique_lock<std::shared_timed_mutex> lock20 (*(mutexes2.at(0))
+            std::unique_lock<std::shared_timed_mutex> lock1 (*(mutexes1.at(0));
+            std::unique_lock<std::shared_timed_mutex> lock2 (*(mutexes1.at(1));
+            std::unique_lock<std::shared_timed_mutex> lock3 (*(mutexes1.at(2));
+            std::unique_lock<std::shared_timed_mutex> lock4 (*(mutexes1.at(3));
+            std::unique_lock<std::shared_timed_mutex> lock5 (*(mutexes1.at(4));
+            std::unique_lock<std::shared_timed_mutex> lock6 (*(mutexes1.at(5));
+            std::unique_lock<std::shared_timed_mutex> lock7 (*(mutexes1.at(6));
+            std::unique_lock<std::shared_timed_mutex> lock8 (*(mutexes1.at(7));
+            std::unique_lock<std::shared_timed_mutex> lock9 (*(mutexes1.at(8));
+            std::unique_lock<std::shared_timed_mutex> lock10 (*(mutexes1.at(9));
+            std::unique_lock<std::shared_timed_mutex> lock11 (*(mutexes2.at(1));
+            std::unique_lock<std::shared_timed_mutex> lock12 (*(mutexes2.at(2));
+            std::unique_lock<std::shared_timed_mutex> lock13 (*(mutexes2.at(3));
+            std::unique_lock<std::shared_timed_mutex> lock14 (*(mutexes2.at(4));
+            std::unique_lock<std::shared_timed_mutex> lock15 (*(mutexes2.at(5));
+            std::unique_lock<std::shared_timed_mutex> lock16 (*(mutexes2.at(6));
+            std::unique_lock<std::shared_timed_mutex> lock17 (*(mutexes2.at(7));
+            std::unique_lock<std::shared_timed_mutex> lock18 (*(mutexes2.at(8));
+            std::unique_lock<std::shared_timed_mutex> lock19 (*(mutexes2.at(9));
+            std::unique_lock<std::shared_timed_mutex> lock20 (*(mutexes2.at(0));
             int previousSize = sizeOfTable;
             sizeOfTable = 2*sizeOfTable;
             vector<T> values1_old = values1;
