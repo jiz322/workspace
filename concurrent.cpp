@@ -260,7 +260,7 @@ int main(int argc, char** argv)
     auto begin = chrono::high_resolution_clock::now(); 
 
     //lmd for calling do works
-    auto lmd = [&a](HashTable<int> h, int begin, int work){
+    auto lmd = [&a](int begin, int work){
         for (int i = 0; i < work; i++){
             //10% add
             if (i % 10 ==9)
@@ -286,7 +286,7 @@ int main(int argc, char** argv)
     vector<std::thread> threads;
     for (int i = 0; i < NUM_THREAD; i++){
             
-			threads.push_back(std::thread (lmd, a, a.START+STEP*i, STEP));
+			threads.push_back(std::thread (lmd, a.START+STEP*i, STEP));
 	}
 	for (auto &th : threads){
 		th.join();
