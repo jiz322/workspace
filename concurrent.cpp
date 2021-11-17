@@ -82,7 +82,7 @@ class HashTable
             for (int i = 0; i < NUM_LOCKS-1; i++)
             {
                 
-                printf("\n%d", mutexes1.at(i));
+                printf("\n%x", mutexes1.at(i));
                 
             }
         }
