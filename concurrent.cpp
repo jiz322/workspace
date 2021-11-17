@@ -260,7 +260,7 @@ int main(int argc, char** argv)
     auto begin = chrono::high_resolution_clock::now(); 
 
     //lmd for calling do works
-    auto lmd = [&h](HashTable<int> h, int begin, int work){
+    auto lmd = [&a](HashTable<int> h, int begin, int work){
         for (int i = 0; i < work; i++){
             //10% add
             if (i % 10 ==9)
