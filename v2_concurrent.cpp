@@ -186,7 +186,6 @@ class HashTable
                 int DEBUG = 0;
                 if (tableToInsert == 1)
                 {
-                    std::unique_lock<std::shared_timed_mutex> lock1 (*(mutexes1.at(l1)));
                     x = swap(x, hash1, 1);            
                     if (x == NULL)
                     {
@@ -198,7 +197,6 @@ class HashTable
                 }
                 else //tableToInsert == 2
                 {
-                    std::unique_lock<std::shared_timed_mutex> lock2 (*(mutexes2.at(l2)));
                     x = swap(x, hash2, 2);
                     if (x == NULL)
                     {
