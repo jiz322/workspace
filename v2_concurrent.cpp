@@ -218,7 +218,9 @@ class HashTable
             int tableToInsert = hash(x, HASH1) % 2; //can before resize lock since this value does not matter
             for (int i = 0; i < LIMIT; i++)
             {
-                //std::shared_lock<std::shared_timed_mutex> lock (mtx_resize);
+                //DEADLOCK HERE
+                
+                std::shared_lock<std::shared_timed_mutex> lock (mtx_resize);
 
                 int hash1 = hash(x, HASH1); //a prime number
                 int hash2 = hash(x, HASH2); // another prime number
@@ -251,6 +253,7 @@ class HashTable
                     tableToInsert = 1;
                     
                 }
+                lock.unlock();
             }
             resize();
             return add(x);
