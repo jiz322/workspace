@@ -79,7 +79,7 @@ class HashTable
             mutexes2.push_back( &mtx18);
             mutexes2.push_back( &mtx19);
             mutexes2.push_back( &mtx20);
-            for (int i = 0; i < NUM_LOCKS; i++)
+            for (int i = 0; i < NUM_LOCKS-1; i++)
             {
                 
                 printf("\n%d", mutexes1.at(i));
