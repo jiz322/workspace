@@ -31,7 +31,7 @@ class HashTable
         int HASH2 = 479001599;
         int START = 100000000; //for populate table
         int NUM_LOCKS = 30;
-        vector<std::mutex> mutexes1(30);
+        vector<std::mutex> mutexes1;
         vector<std::mutex> mutexes2;
         
         std::mutex *l1;
