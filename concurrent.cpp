@@ -256,7 +256,7 @@ int main(int argc, char** argv)
     //Expected final size is about populated + (WORKS -  populated)/10
     int WORKS = 10000;
     int POPULATE = 10000;
-    int NUM_THREAD = 1;
+    int NUM_THREAD = 8;
     int STEP = WORKS/NUM_THREAD;
     HashTable <int> a = HashTable<int>(40000);
     printf("populating...");
