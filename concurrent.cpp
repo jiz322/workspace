@@ -30,7 +30,7 @@ class HashTable
         int HASH1 = 2147483647;
         int HASH2 = 479001599;
         int START = 100000000; //for populate table
-        int NUM_LOCKS = 30;
+        int NUM_LOCKS = 10;
         vector<std::mutex*> mutexes1;
         vector<std::mutex*> mutexes2;
 
@@ -39,15 +39,31 @@ class HashTable
             this->sizeOfTable = sizeOfTable;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
+            std::mutex mtx1;
+            std::mutex mtx2;
+            std::mutex mtx3;
+            std::mutex mtx4;
+            std::mutex mtx5;
+            std::mutex mtx6;
+            std::mutex mtx7;
+            std::mutex mtx8;
+            std::mutex mtx9;
+            std::mutex mtx10;
+            mutexes1.push_back( &mtx1);
+            mutexes1.push_back( &mtx2);
+            mutexes1.push_back( &mtx3);
+            mutexes1.push_back( &mtx4);
+            mutexes1.push_back( &mtx5);
+            mutexes2.push_back( &mtx6);
+            mutexes2.push_back( &mtx7);
+            mutexes2.push_back( &mtx8);
+            mutexes2.push_back( &mtx9);
+            mutexes2.push_back( &mtx10);
             for (int i = 0; i < NUM_LOCKS; i++)
             {
-                {
-                    std::mutex mtx1;
-                    std::mutex mtx2;
-                    printf("\n%d", &mtx1);
-                    mutexes1.push_back( &mtx1);
-                    mutexes2.push_back( &mtx2);
-                }
+                
+                printf("\n%d", mutexes1.at(i));
+                
             }
         }
 
