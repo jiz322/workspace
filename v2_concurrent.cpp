@@ -191,7 +191,6 @@ class HashTable
                     {
                         return true;
                     }
-                    lock1.unlock();
                     tableToInsert = 2;
                     
                 }
@@ -202,7 +201,6 @@ class HashTable
                     {
                         return true;
                     }
-                    lock2.unlock();
                     tableToInsert = 1;
                     
                 }
