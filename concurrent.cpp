@@ -30,13 +30,20 @@ class HashTable
         int HASH2 = 479001599;
         int START = 100000000; //for populate table
         int NUM_LOCKS = 30;
-        vector<std::mutex> mutexes1(int NUM_LOCKS);
-        vector<std::mutex> mutexes2(int NUM_LOCKS);
+        vector<std::mutex> mutexes1;
+        vector<std::mutex> mutexes2;
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
+            for (int i = 0; i < NUM_LOCKS; i++)
+            {
+                mutex mtx1;
+                mutex mtx2;
+                mutexes1.push_back(mtx1);
+                mutexes2.push_back(mtx2);
+            }
         }
 
         int hash (T x, int nm)
@@ -51,8 +58,8 @@ class HashTable
             //Might be too conservative
             int l1 = hash1 % NUM_LOCKS;
             int l2 = hash2 % NUM_LOCKS;
-            std::lock_guard<std::mutex> lock1 (mutexes1.at(l1));
-            std::lock_guard<std::mutex> lock2 (mutexes2.at(l2));
+           // std::lock_guard<std::mutex> lock1 (mutexes1.at(l1));
+           // std::lock_guard<std::mutex> lock2 (mutexes2.at(l2));
             if (values1.at(hash1) == x)
             {
                 return true;
