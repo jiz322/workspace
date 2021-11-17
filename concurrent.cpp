@@ -33,25 +33,17 @@ class HashTable
         int NUM_LOCKS = 30;
         vector<std::mutex*> mutexes1;
         vector<std::mutex*> mutexes2;
-        
-        std::mutex *l1;
-        std::mutex *l2;
-        //std::mutex l3;
-        //std::mutex *l2 = &l3;
+
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
-            l1 = (std::mutex *) malloc(NUM_LOCKS);
-            l2 = (std::mutex *) malloc(NUM_LOCKS);
             for (int i = 0; i < NUM_LOCKS; i++)
             {
-                //l1[i] = std::mutex;
-                //l2[i] = std::mutex;
                 std::mutex mtx1;
                 std::mutex mtx2;
-                //l2[i] = &mtx1;
+                printf("\n%d", &mtx1);
                 mutexes1.push_back( &mtx1);
                 mutexes2.push_back( &mtx2);
             }
