@@ -288,12 +288,12 @@ int main(int argc, char** argv)
             //first thread will remove succesfully whereas the rest can not.
             else if (i % 10 == 1)
             {
-                a.remove(begin+i);
+                a.remove(i);
             }
             //80% contains, always true in this serial one
             else
             {
-                int c = a.contains(begin+i);
+                int c = a.contains(i);
                 //printf("\n%d",c);
             }
         }
