@@ -178,6 +178,7 @@ class HashTable
                 int hash2 = hash(x, HASH2); // another prime number
                 int l1 = hash1 % NUM_LOCKS;
                 int l2 = hash2 % NUM_LOCKS;
+                //why not dead lock here?
                 std::unique_lock lock1 (*(mutexes1.at(l1)));
                 std::unique_lock lock2 (*(mutexes2.at(l2)));
                 int tableToInsert = hash1%2+1; //1 or 2, randomly select the first table to insert
@@ -262,7 +263,7 @@ class HashTable
 int main(int argc, char** argv) 
 {
     //Expected final size is about populated + (WORKS -  populated)/10
-    int WORKS = 10000;
+    int WORKS = 4000;
     int POPULATE = 10000;
     int NUM_THREAD = 8;
     int STEP = WORKS/NUM_THREAD;
