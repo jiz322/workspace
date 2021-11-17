@@ -259,7 +259,7 @@ int main(int argc, char** argv)
 		
 	// }
     std::thread t(doWork, a, a.START, WORKS);
-    t.join;
+    t.join();
 
     //doWork(a, a.START, WORKS);
     auto end = chrono::high_resolution_clock::now();
