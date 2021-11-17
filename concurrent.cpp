@@ -208,8 +208,7 @@ class HashTable
 
 };
 
-template <class T>
-static void doWork(HashTable<T> h, int begin, int work)
+void doWork(HashTable<int> h, int begin, int work)
 {
     for (int i = 0; i < work; i++){
         //10% add
@@ -250,15 +249,17 @@ int main(int argc, char** argv)
 
     printf("\nDoing Works");  
     auto begin = chrono::high_resolution_clock::now();    
-    vector<std::thread> threads;
-    for (int i = 0; i < NUM_THREAD; i++){
-            std::thread t(doWork, a, a.START, WORKS);
-			threads.push_back(t);
-	}
-	for (auto &th : threads){
-		th.join();
+    // vector<std::thread> threads;
+    // for (int i = 0; i < NUM_THREAD; i++){
+    //         std::thread t(doWork, a, a.START, WORKS);
+	// 		threads.push_back(t);
+	// }
+	// for (auto &th : threads){
+	// 	th.join();
 		
-	}
+	// }
+    std::thread t(doWork, a, a.START, WORKS);
+    t.join;
 
     //doWork(a, a.START, WORKS);
     auto end = chrono::high_resolution_clock::now();
