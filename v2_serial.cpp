@@ -181,10 +181,10 @@ class HashTable
 int main(int argc, char** argv) 
 {
     //Expected final size is about populated + (WORKS -  populated)/10
-    int WORKS = 11000;
+    int WORKS = 3000000;
     HashTable <int> a = HashTable<int>(4000);
     printf("populating...");
-    a.populate(10000);
+    a.populate(1000000);
     printf("\npopulated");
     printf("\ninit size is: %d",a.size());
     printf("\ninit table size is: %d",a.sizeOfTable);
