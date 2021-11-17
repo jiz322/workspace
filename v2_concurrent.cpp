@@ -144,7 +144,7 @@ class HashTable
         {
             std::unique_lock<std::shared_timed_mutex> lock (mtx_resize);
             int previousSize = sizeOfTable;
-            sizeOfTable = 2*sizeOfTable;
+            sizeOfTable = sizeOfTable*1.2;
             vector<T> values1_old = values1;
             vector<T> values2_old = values2;
             values1.assign(sizeOfTable, NULL);
