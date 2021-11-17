@@ -176,6 +176,10 @@ class HashTable
             {
                 int hash1 = hash(x, HASH1); //suprisely, this is a prime number
                 int hash2 = hash(x, HASH2); // another prime number
+                int l1 = hash1 % NUM_LOCKS;
+                int l2 = hash2 % NUM_LOCKS;
+                std::unique_lock lock1 (*(mutexes1.at(l1)));
+                std::unique_lock lock2 (*(mutexes2.at(l2)));
                 int tableToInsert = hash1%2+1; //1 or 2, randomly select the first table to insert
                 int DEBUG = 0;
                 if (tableToInsert == 1)
