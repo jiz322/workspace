@@ -48,6 +48,9 @@ class HashTable
         {
             int hash1 = hash(x, HASH1);
             int hash2 = hash(x, HASH2);
+            //Might be too conservative
+            std::lock_guard<std::mutex> lock (mutexes1[hash1 % NUM_LOCKS]);
+            std::lock_guard<std::mutex> lock (mutexes2[hash2 % NUM_LOCKS]);
             if (values1.at(hash1) == x)
             {
                 return true;
