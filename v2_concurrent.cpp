@@ -102,6 +102,7 @@ class HashTable
             int l2 = hash2 % NUM_LOCKS;
            // std::shared_lock lock1 (*(mutexes1.at(l1)), std::defer_lock);
            // std::shared_lock lock2 (*(mutexes2.at(l2)), std::defer_lock);
+            std::unique_lock<std::shared_timed_mutex> lock (mtx_resize);
             std::shared_lock lock1 (*(mutexes1.at(l1)));
             std::shared_lock lock2 (*(mutexes2.at(l2)));
             
@@ -201,6 +202,7 @@ class HashTable
                 int l1 = hash1 % NUM_LOCKS;
                 int l2 = hash2 % NUM_LOCKS;
                 //why not dead lock here?
+                std::unique_lock<std::shared_timed_mutex> lock (mtx_resize);
                 std::unique_lock<std::shared_timed_mutex> lock1 (*(mutexes1.at(l1)), std::defer_lock);
                 std::unique_lock<std::shared_timed_mutex> lock2 (*(mutexes2.at(l2)), std::defer_lock);
                 lock1.lock();
@@ -235,6 +237,7 @@ class HashTable
             int hash2 = hash(x, HASH2);
             int l1 = hash1 % NUM_LOCKS;
             int l2 = hash2 % NUM_LOCKS;
+            std::unique_lock<std::shared_timed_mutex> lock (mtx_resize);
             std::unique_lock lock1 (*(mutexes1.at(l1)));
             std::unique_lock lock2 (*(mutexes2.at(l2)));
             if (values1.at(hash1) == x)
