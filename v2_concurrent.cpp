@@ -326,7 +326,7 @@ int main(int argc, char** argv)
 
     //check contains 
     //Should print 1 
-    printf("\n%d", a.contains(2*a.START+99));
+    printf("\n%d", a.contains(3*a.START+99));
     //Should print 0 
     printf("\n%d", a.contains(2*a.START+100));
     //Should print 0 
