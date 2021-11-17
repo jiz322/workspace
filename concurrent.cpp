@@ -53,7 +53,7 @@ class HashTable
                 std::mutex mtx2;
                 //l2[i] = &mtx1;
                 mutexes1.push_back( &mtx1);
-                mutexes2.push_back( &mutex2);
+                mutexes2.push_back( &mtx2);
             }
         }
 
