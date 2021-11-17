@@ -317,7 +317,7 @@ int main(int argc, char** argv)
         printf("\nwork: %d", work);
         for (int i = begin; i < begin + work; i++){
             //10% add
-            if (i % 10 ==9)
+            if (i % 10 ==19)
             {
                 a.add(2*begin+i);
             }
@@ -325,7 +325,7 @@ int main(int argc, char** argv)
             //Unfair to this concurrent version,
             //Since thread are not balance loaded
             //first thread will remove succesfully whereas the rest can not.
-            else if (i % 10 == 1)
+            else if (i % 10 == 11)
             {
                 a.remove(begin+i);
             }
