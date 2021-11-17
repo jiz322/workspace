@@ -213,8 +213,9 @@ class HashTable
                     {
                         return true;
                     }
-                    tableToInsert = 2;
                     lock1.unlock();
+                    tableToInsert = 2;
+                    
                 }
                 else //tableToInsert == 2
                 {
@@ -224,8 +225,9 @@ class HashTable
                     {
                         return true;
                     }
-                    tableToInsert = 1;
                     lock2.unlock();
+                    tableToInsert = 1;
+                    
                 }
             }
             resize();
@@ -239,18 +241,22 @@ class HashTable
             int l1 = hash1 % NUM_LOCKS;
             int l2 = hash2 % NUM_LOCKS;
             std::shared_lock<std::shared_timed_mutex> lock (mtx_resize);
+            
             std::unique_lock lock1 (*(mutexes1.at(l1)));
-            std::unique_lock lock2 (*(mutexes2.at(l2)));
             if (values1.at(hash1) == x)
             {
+                
                 swap(NULL, hash1, 1);
                 return true;
             }
+            lock1.unlock();
+            std::unique_lock lock2 (*(mutexes2.at(l2)));
             else if(values2.at(hash2) == x)
             {
                 swap(NULL, hash2, 2);
                 return true;
             }
+            lock2.unlock();
             else
             {
                 return false;
