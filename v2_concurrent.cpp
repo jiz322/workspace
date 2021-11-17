@@ -284,7 +284,7 @@ int main(int argc, char** argv)
         printf("\nwork: %d", work);
         for (int i = begin; i < begin + work; i++){
             //10% add
-            if (i % 10 ==4)
+            if (i % 10 ==9)
             {
                 a.add(2*begin+i);
             }
