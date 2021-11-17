@@ -326,7 +326,7 @@ int main(int argc, char** argv)
     int POPULATE = 1000000;
     int NUM_THREAD = 8;
     int STEP = WORKS/NUM_THREAD;
-    HashTable <int> a = HashTable<int>(40000);
+    HashTable <int> a = HashTable<int>(4000);
     printf("populating...");
     a.populate(POPULATE);
     printf("\npopulated");
