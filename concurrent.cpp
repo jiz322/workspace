@@ -344,8 +344,9 @@ int main(int argc, char** argv)
             printf("\n i =  %d", i);
 	}
 	for (auto &th : threads){
+        printf("\n bf join ");
 		th.join();
-		
+		printf("\n after join ");
 	}
 
 
