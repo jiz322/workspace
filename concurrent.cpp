@@ -207,8 +207,8 @@ class HashTable
             int hash2 = hash(x, HASH2);
             int l1 = hash1 % NUM_LOCKS;
             int l2 = hash2 % NUM_LOCKS;
-            std::unique_lock lock1 (*(mutexes1.at(l1)));
-            std::unique_lock lock2 (*(mutexes2.at(l2)));
+            //std::unique_lock lock1 (*(mutexes1.at(l1)));
+            //std::unique_lock lock2 (*(mutexes2.at(l2)));
             if (values1.at(hash1) == x)
             {
                 swap(NULL, hash1, 1);
