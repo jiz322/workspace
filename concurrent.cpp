@@ -248,18 +248,22 @@ int main(int argc, char** argv)
     printf("\ninit table size is: %d",a.sizeOfTable);
 
     printf("\nDoing Works");  
-    auto begin = chrono::high_resolution_clock::now();    
-    // vector<std::thread> threads;
-    // for (int i = 0; i < NUM_THREAD; i++){
-    //         std::thread t(doWork, a, a.START, WORKS);
-	// 		threads.push_back(t);
-	// }
-	// for (auto &th : threads){
-	// 	th.join();
+    auto begin = chrono::high_resolution_clock::now(); 
+
+    auto doWork = [](){
+        printf("try");
+    }   
+    vector<std::thread> threads;
+    for (int i = 0; i < NUM_THREAD; i++){
+            
+			threads.push_back(std::thread (doWork));
+	}
+	for (auto &th : threads){
+		th.join();
 		
-	// }
-    std::thread t(doWork, a, a.START, WORKS);
-    t.join();
+	}
+
+
 
     //doWork(a, a.START, WORKS);
     auto end = chrono::high_resolution_clock::now();
