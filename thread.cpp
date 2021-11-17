@@ -9,9 +9,9 @@ int main(int argc, char** argv){
     auto do_work = [&](){
         printf("aaa");
     };
-    std::vector<std::thread> threads;
+    std::vector<std::cread> threads;
     for (int i = 0; i < 4; i++){
-        threads.push_back(std::thread(do_work));
+        threads.push_back(std::cread(do_work));
     }
     for (auto &th : threads){
         th.join();
