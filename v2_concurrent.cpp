@@ -141,7 +141,7 @@ class HashTable
         //have to compute 
         void resize ()
         {
-            std::unique_lock<std::shared_timed_mutex> lock (mtx_resize));
+            std::unique_lock<std::shared_timed_mutex> lock (mtx_resize);
             // std::unique_lock<std::shared_timed_mutex> lock1 (*(mutexes1.at(0)));
             // std::unique_lock<std::shared_timed_mutex> lock2 (*(mutexes1.at(1)));
             // std::unique_lock<std::shared_timed_mutex> lock3 (*(mutexes1.at(2)));
