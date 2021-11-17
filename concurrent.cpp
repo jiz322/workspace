@@ -30,19 +30,19 @@ class HashTable
         int HASH2 = 479001599;
         int START = 100000000; //for populate table
         int NUM_LOCKS = 30;
-        vector<std::mutex> mutexes1;
-        vector<std::mutex> mutexes2;
+        vector<std::mutex> mutexes1(30);
+        vector<std::mutex> mutexes2(30);
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
-            for (int i = 0; i < NUM_LOCKS; i++)
-            {
+            // for (int i = 0; i < NUM_LOCKS; i++)
+            // {
                 
-                mutexes1.push_back(std::mutex mtx1);
-                mutexes2.push_back(std::mutex mtx2);
-            }
+            //     mutexes1.push_back(std::mutex mtx1);
+            //     mutexes2.push_back(std::mutex mtx2);
+            // }
         }
 
         int hash (T x, int nm)
