@@ -251,14 +251,15 @@ class HashTable
             }
             lock1.unlock();
             std::unique_lock lock2 (*(mutexes2.at(l2)));
-            else if(values2.at(hash2) == x)
+            if(values2.at(hash2) == x)
             {
                 swap(NULL, hash2, 2);
                 return true;
             }
-            lock2.unlock();
+            
             else
             {
+                lock2.unlock();
                 return false;
             }
         }
