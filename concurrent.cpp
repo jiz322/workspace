@@ -35,9 +35,9 @@ class HashTable
         vector<std::mutex> mutexes2;
         
         std::mutex *l1;
-        
-        std::mutex l3;
-        std::mutex *l2 = &l3;
+        std::mutex *l2;
+        //std::mutex l3;
+        //std::mutex *l2 = &l3;
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
@@ -45,15 +45,15 @@ class HashTable
             values2.assign(sizeOfTable, NULL);
             l1 = (std::mutex *) malloc(NUM_LOCKS);
             l2 = (std::mutex *) malloc(NUM_LOCKS);
-            // for (int i = 0; i < NUM_LOCKS; i++)
-            // {
-            //     //l1[i] = std::mutex;
-            //     //l2[i] = std::mutex;
-            //     std::mutex *mtx;
-            //     //*(l1+i) = *mtx;
-            //     //mutexes1.push_back( mtx));
-            //     // mutexes2.push_back( std::mutex mutex2);
-            // }
+            for (int i = 0; i < NUM_LOCKS; i++)
+            {
+                //l1[i] = std::mutex;
+                //l2[i] = std::mutex;
+                std::mutex mtx;
+                l2 = &mtx;
+                //mutexes1.push_back( mtx));
+                // mutexes2.push_back( std::mutex mutex2);
+            }
         }
 
         int hash (T x, int nm)
