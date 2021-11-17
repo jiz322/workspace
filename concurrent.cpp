@@ -46,8 +46,8 @@ class HashTable
             {
                 //l1[i] = std::mutex;
                 //l2[i] = std::mutex;
-                std::mutex mtx;
-                *(l1+i) = &mtx;
+                std::mutex *mtx;
+                *(l1+i) = *mtx;
                 //mutexes1.push_back( mtx));
                 // mutexes2.push_back( std::mutex mutex2);
             }
