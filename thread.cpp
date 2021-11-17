@@ -15,6 +15,6 @@ int main(int argc, char** argv){
     }
     for (auto &th : threads){
         th.join();
-        printf("\nThe balance after join is";
+        printf("\nThe balance after join is");
     }
 }
