@@ -252,7 +252,8 @@ int main(int argc, char** argv)
     auto begin = chrono::high_resolution_clock::now();    
     vector<std::thread> threads;
     for (int i = 0; i < NUM_THREAD; i++){
-			threads.push_back(std::thread(doWork, a, a.START, WORKS));
+            std::thread t(doWork, a, a.START, WORKS);
+			threads.push_back(t);
 	}
 	for (auto &th : threads){
 		th.join();
