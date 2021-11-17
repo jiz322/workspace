@@ -260,12 +260,12 @@ int main(int argc, char** argv)
     auto begin = chrono::high_resolution_clock::now(); 
 
     //lmd for calling do works
-    auto lmd = [&](HashTable<int> h, int begin, int work){
+    auto lmd = [=](int begin, int work){
         for (int i = 0; i < work; i++){
             //10% add
             if (i % 10 ==9)
             {
-                h.add(2*begin+i);
+                a.add(2*begin+i);
             }
             //10%remove
             //Unfair to this concurrent version,
@@ -273,12 +273,12 @@ int main(int argc, char** argv)
             //first thread will remove succesfully whereas the rest can not.
             else if (i % 10 == 1)
             {
-                h.remove(begin+i);
+                a.remove(begin+i);
             }
             //80% contains, always true in this serial one
             else
             {
-                int c = h.contains(begin+i);
+                int c = a.contains(begin+i);
                 //printf("\n%d",c);
             }
         }
@@ -286,7 +286,7 @@ int main(int argc, char** argv)
     vector<std::thread> threads;
     for (int i = 0; i < NUM_THREAD; i++){
             
-			threads.push_back(std::thread (lmd, a, a.START+STEP*i, STEP));
+			threads.push_back(std::thread (lmd, a.START+STEP*i, STEP));
 	}
 	for (auto &th : threads){
 		th.join();
