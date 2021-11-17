@@ -170,10 +170,7 @@ class HashTable
         //compare to add, no acquire of mtx_resize
         bool add_single_thread (T x)
         {
-            if (contains(x))
-            {
-                return false;
-            }
+            
             int LIMIT =  sizeOfTable/2;
             int tableToInsert = hash(x, HASH1) % 2;
             for (int i = 0; i < LIMIT; i++)
