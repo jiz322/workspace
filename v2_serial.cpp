@@ -184,7 +184,7 @@ int main(int argc, char** argv)
     int WORKS = 4000000;
     HashTable <int> a = HashTable<int>(4000);
     printf("populating...");
-    a.populate(1000000);
+    a.populate(100000000);
     printf("\npopulated");
     printf("\ninit size is: %d",a.size());
     printf("\ninit table size is: %d",a.sizeOfTable);
