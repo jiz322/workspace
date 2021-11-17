@@ -40,7 +40,7 @@ class HashTable
             values2.assign(sizeOfTable, NULL);
             for (int i = 0; i < NUM_LOCKS; i++)
             {
-                
+                mutable std::shared_mutex mutex_;
                 mutexes1.push_back( mutex_));
                 mutexes2.push_back( mutex_);
             }
