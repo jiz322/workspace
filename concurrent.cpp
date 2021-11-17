@@ -339,7 +339,7 @@ int main(int argc, char** argv)
     };   
     vector<std::thread> threads;
     for (int i = 0; i < NUM_THREAD; i++){
-            
+            printf("\n bf =  %d", i);
 			threads.push_back(std::thread (lmd, a.START+STEP*i, STEP));
             printf("\n i =  %d", i);
 	}
