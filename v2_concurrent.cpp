@@ -284,8 +284,8 @@ int main(int argc, char** argv)
             //10% add
             if (i % 10 ==9)
             {
-                a.add(2*begin+i);
-                printf("\n add %d", 2*begin+i);
+                a.add(2*a.START+i);
+                printf("\n add %d", 2*a.START+i);
             }
             //10%remove
             //Unfair to this concurrent version,
