@@ -244,7 +244,7 @@ void doWork(HashTable<int> h, int begin, int work)
 int main(int argc, char** argv) 
 {
     //Expected final size is about populated + (WORKS -  populated)/10
-    int WORKS = 11000;
+    int WORKS = 1000;
     int POPULATE = 10000;
     int NUM_THREAD = 8;
     int STEP = WORKS/NUM_THREAD;
@@ -305,7 +305,7 @@ int main(int argc, char** argv)
 
     //check contains 
     //Should print 1 
-    printf("\n%d", a.contains(2*a.START+99));
+    printf("\n%d", a.contains(2*a.START+900));
     //Should print 0 
     printf("\n%d", a.contains(2*a.START+100));
     //Should print 0 
