@@ -269,30 +269,6 @@ class HashTable
 
 };
 
-void doWork(HashTable<int> h, int begin, int work)
-{
-    for (int i = 0; i < work; i++){
-        //10% add
-        if (i % 10 ==9)
-        {
-            h.add(2*begin+i);
-        }
-        //10%remove
-        //Unfair to this concurrent version,
-        //Since thread are not balance loaded
-        //first thread will remove succesfully whereas the rest can not.
-        else if (i % 10 == 1)
-        {
-            h.remove(begin+i);
-        }
-        //80% contains, always true in this serial one
-        else
-        {
-            int c = h.contains(begin+i);
-            //printf("\n%d",c);
-        }
-    }
-}
 
 int main(int argc, char** argv) 
 {
