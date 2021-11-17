@@ -341,6 +341,7 @@ int main(int argc, char** argv)
     for (int i = 0; i < NUM_THREAD; i++){
             
 			threads.push_back(std::thread (lmd, a.START+STEP*i, STEP));
+            printf("\n i =  %d", i);
 	}
 	for (auto &th : threads){
 		th.join();
