@@ -175,18 +175,62 @@ class HashTable
                 if (*it != NULL){
                     //erase this and call add
                     T x = *it;
-                    add(x);
+                    add_single_thread(x);
                 }
             }
             for (typename std::vector<T>::iterator it = values2_old.begin() ; it != values2_old.end(); ++it)
             {
                 if (*it != NULL){
                     T x = *it;
-                    add(x);
+                    add_single_thread(x);
                 }
             }
         }
-
+        
+        bool add_single_thread (T x)
+        {
+            if (contains(x))
+            {
+                return false;
+            }
+            int LIMIT =  sizeOfTable/2;
+            int tableToInsert = hash(x, HASH1) % 2;
+            for (int i = 0; i < LIMIT; i++)
+            {
+                int hash1 = hash(x, HASH1); //a prime number
+                int hash2 = hash(x, HASH2); // another prime number
+                int l1 = hash1 % NUM_LOCKS;
+                int l2 = hash2 % NUM_LOCKS;
+                
+                int DEBUG = 0;
+                if (tableToInsert == 1)
+                {
+                    std::unique_lock<std::shared_timed_mutex> lock1 (*(mutexes1.at(l1)));
+                    x = swap(x, hash1, 1);            
+                    if (x == NULL)
+                    {
+                        return true;
+                    }
+                    lock1.unlock();
+                    tableToInsert = 2;
+                    
+                }
+                else //tableToInsert == 2
+                {
+                    std::unique_lock<std::shared_timed_mutex> lock2 (*(mutexes2.at(l2)));
+                    x = swap(x, hash2, 2);
+                    if (x == NULL)
+                    {
+                        return true;
+                    }
+                    lock2.unlock();
+                    tableToInsert = 1;
+                    
+                }
+            }
+            resize();
+            return add(x);
+        }
         bool add (T x)
         {
             if (contains(x))
