@@ -252,7 +252,7 @@ int main(int argc, char** argv)
 
     auto doWork = [](){
         printf("try");
-    }   
+    };   
     vector<std::thread> threads;
     for (int i = 0; i < NUM_THREAD; i++){
             
