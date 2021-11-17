@@ -99,8 +99,8 @@ class HashTable
             //Might be too conservative
             int l1 = hash1 % NUM_LOCKS;
             int l2 = hash2 % NUM_LOCKS;
-            //std::shared_lock lock1 (*(mutexes1.at(l1)));
-            //std::shared_lock lock2 (*(mutexes2.at(l2)));
+            std::shared_lock lock1 (*(mutexes1.at(l1)), std::defer_lock);
+            std::shared_lock lock2 (*(mutexes2.at(l2)), std::defer_lock);
             if (values1.at(hash1) == x)
             {
                 return true;
