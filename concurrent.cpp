@@ -31,8 +31,9 @@ class HashTable
         int HASH2 = 479001599;
         int START = 100000000; //for populate table
         int NUM_LOCKS = 30;
-        vector<std::mutex> mutexes1;
+        vector<std::mutex> mutexes1(30);
         vector<std::mutex> mutexes2;
+        
         std::mutex *l1;
         std::mutex *l2;
         HashTable (int sizeOfTable)
@@ -42,15 +43,15 @@ class HashTable
             values2.assign(sizeOfTable, NULL);
             l1 = (std::mutex *) malloc(NUM_LOCKS);
             l2 = (std::mutex *) malloc(NUM_LOCKS);
-            for (int i = 0; i < NUM_LOCKS; i++)
-            {
-                //l1[i] = std::mutex;
-                //l2[i] = std::mutex;
-                std::mutex *mtx;
-                *(l1+i) = *mtx;
-                //mutexes1.push_back( mtx));
-                // mutexes2.push_back( std::mutex mutex2);
-            }
+            // for (int i = 0; i < NUM_LOCKS; i++)
+            // {
+            //     //l1[i] = std::mutex;
+            //     //l2[i] = std::mutex;
+            //     std::mutex *mtx;
+            //     //*(l1+i) = *mtx;
+            //     //mutexes1.push_back( mtx));
+            //     // mutexes2.push_back( std::mutex mutex2);
+            // }
         }
 
         int hash (T x, int nm)
