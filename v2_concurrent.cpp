@@ -334,7 +334,7 @@ int main(int argc, char** argv)
     printf("\ninit table size is: %d",a.sizeOfTable);
 
     printf("\nDoing Works");  
-    auto begin = chrono::high_resolution_clock::now(); 
+    
 
     //lmd for calling do works
     auto lmd = [&a](int begin, int work){
@@ -361,6 +361,7 @@ int main(int argc, char** argv)
             }
         }
     };   
+    auto begin = chrono::high_resolution_clock::now(); 
     vector<std::thread> threads;
     for (int i = 0; i < NUM_THREAD; i++){
 
