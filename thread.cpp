@@ -1,29 +1,47 @@
-// thread example
-#include <iostream>       // std::cout
-#include <thread>         // std::thread
+#include <iostream>
+#include <thread>
+using namespace std;
  
-void foo() 
+// function to be used in callable
+void func_dummy(int N)
+ {
+   for (int i = 0; i < N; i++) {
+   cout << "Thread 1 :: callable => function pointer\n";
+   }
+ }
+  
+// A callable object
+class thread_obj {
+ public:
+   void operator()(int n) {
+       for (int i = 0; i < n; i++)
+           cout << "Thread 2 :: callable => function object\n";
+   }
+};
+  
+int main()
 {
-  // do stuff...
-}
-
-void bar(int x)
-{
-  // do stuff...
-}
-
-int main() 
-{
-  std::thread first (foo);     // spawn new thread that calls foo()
-  std::thread second (bar,0);  // spawn new thread that calls bar(0)
-
-  std::cout << "main, foo and bar now execute concurrently...\n";
-
-  // synchronize threads:
-  first.join();                // pauses until first finishes
-  second.join();               // pauses until second finishes
-
-  std::cout << "foo and bar completed.\n";
-
-  return 0;
+// Define a Lambda Expression
+auto f = [](int n) {
+   for (int i = 0; i < n; i++)
+   cout << "Thread 3 :: callable => lambda expression\n";
+   };
+//launch thread using function pointer as callable
+thread th1(func_dummy, 2);
+  
+// launch thread using function object as callable
+thread th2(thread_obj(), 2);
+  
+//launch thread using lambda expression as callable
+thread th3(f, 2);
+  
+// Wait for thread t1 to finish
+ th1.join();
+// Wait for thread t2 to finish
+th2.join();
+  
+// Wait for thread t3 to finish
+th3.join();
+  
+return 0;
 }
