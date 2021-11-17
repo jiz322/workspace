@@ -33,32 +33,32 @@ class HashTable
         int NUM_LOCKS =10;
         vector<std::shared_timed_mutex*> mutexes1;
         vector<std::shared_timed_mutex*> mutexes2;
-
+        std::shared_timed_mutex mtx1;
+        std::shared_timed_mutex mtx2;
+        std::shared_timed_mutex mtx3;
+        std::shared_timed_mutex mtx4;
+        std::shared_timed_mutex mtx5;
+        std::shared_timed_mutex mtx6;
+        std::shared_timed_mutex mtx7;
+        std::shared_timed_mutex mtx8;
+        std::shared_timed_mutex mtx9;
+        std::shared_timed_mutex mtx10;
+        std::shared_timed_mutex mtx11;
+        std::shared_timed_mutex mtx12;
+        std::shared_timed_mutex mtx13;
+        std::shared_timed_mutex mtx14;
+        std::shared_timed_mutex mtx15;
+        std::shared_timed_mutex mtx16;
+        std::shared_timed_mutex mtx17;
+        std::shared_timed_mutex mtx18;
+        std::shared_timed_mutex mtx19;
+        std::shared_timed_mutex mtx20;
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
-            std::shared_timed_mutex mtx1;
-            std::shared_timed_mutex mtx2;
-            std::shared_timed_mutex mtx3;
-            std::shared_timed_mutex mtx4;
-            std::shared_timed_mutex mtx5;
-            std::shared_timed_mutex mtx6;
-            std::shared_timed_mutex mtx7;
-            std::shared_timed_mutex mtx8;
-            std::shared_timed_mutex mtx9;
-            std::shared_timed_mutex mtx10;
-            std::shared_timed_mutex mtx11;
-            std::shared_timed_mutex mtx12;
-            std::shared_timed_mutex mtx13;
-            std::shared_timed_mutex mtx14;
-            std::shared_timed_mutex mtx15;
-            std::shared_timed_mutex mtx16;
-            std::shared_timed_mutex mtx17;
-            std::shared_timed_mutex mtx18;
-            std::shared_timed_mutex mtx19;
-            std::shared_timed_mutex mtx20;
+
             mutexes1.push_back( &mtx1);
             mutexes1.push_back( &mtx2);
             mutexes1.push_back( &mtx3);
