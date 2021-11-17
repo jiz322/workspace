@@ -70,7 +70,7 @@ class HashTable
         void resize ()
         {
             int previousSize = sizeOfTable;
-            sizeOfTable = 2*sizeOfTable;
+            sizeOfTable = 5*sizeOfTable;
             vector<T> values1_old = values1;
             vector<T> values2_old = values2;
             values1.assign(sizeOfTable, NULL);
@@ -181,7 +181,7 @@ class HashTable
 int main(int argc, char** argv) 
 {
     //Expected final size is about populated + (WORKS -  populated)/10
-    int WORKS = 3000000;
+    int WORKS = 4000000;
     HashTable <int> a = HashTable<int>(4000);
     printf("populating...");
     a.populate(1000000);
