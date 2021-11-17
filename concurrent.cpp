@@ -105,14 +105,14 @@ class HashTable
             while (flag) {
                 int f1 = lock1.try_lock();
                 int f3 = lock2.try_lock();
-                if (f1&f3 == 1){
+                if (f1&f3 != 0){
                     flag = 0; //proceed
                 }
                 else{	//unlock and wait
-                    if (f1 ==  1){
+                    if (f1 !=  0){
                         lock1.unlock();
                     }
-                    if (f3 == 1){
+                    if (f3 != 0){
                         lock2.unlock();
                     }
                 }
