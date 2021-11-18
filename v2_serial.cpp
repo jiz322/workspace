@@ -193,14 +193,14 @@ int main(int argc, char** argv)
     auto begin = chrono::high_resolution_clock::now();    
     for (int i = 0; i < WORKS; i++){
         //10% add
-        if (i % 10 ==9)
+        if (i % 10 ==5)
         {
             a.add(2*a.START+i);
         }
         //10%remove
-        else if (i % 10 == 1)
+        else if (i % 10 == 0)
         {
-            a.remove(a.START+i);
+            a.remove(2*a.START+i-5);
         }
         //80% contains, always true in this serial one
         else

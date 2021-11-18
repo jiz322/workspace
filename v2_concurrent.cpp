@@ -322,7 +322,7 @@ class HashTable
 int main(int argc, char** argv) 
 {
     //Expected final size is about populated + (WORKS -  populated)/10
-    int WORKS = 2000000;
+    int WORKS = 20000000;
     int POPULATE = 10000000;
     int NUM_THREAD = 1;
     int STEP = WORKS/NUM_THREAD;
@@ -340,7 +340,7 @@ int main(int argc, char** argv)
     auto lmd = [&a](int begin, int work){
         for (int i = begin; i < begin + work; i++){
             //10% add
-            if (i % 10 ==9)
+            if (i % 10 ==5)
             {
                 a.add(2*a.START+i);
                 //printf("\n add %d", 2*a.START+i);
@@ -349,9 +349,9 @@ int main(int argc, char** argv)
             //Unfair to this concurrent version,
             //Since thread are not balance loaded
             //first thread will remove succesfully whereas the rest can not.
-            else if (i % 10 == 1)
+            else if (i % 10 == 0)
             {
-                a.remove(i);
+                a.remove(2*a.START+i-5);
             }
             //80% contains, always true in this serial one
             else
