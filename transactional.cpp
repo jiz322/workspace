@@ -24,11 +24,11 @@ class ValueWrap
 {
     public:
         T value;
-        std::atomic<int> removed;
-        ValueWrap (T v)  
+        std::atomic<int> valid;
+        ValueWrap (T v, int r)  
         {
             value = v;
-            removed = 0;
+            valid = r;
         } 
 
 };
@@ -47,8 +47,8 @@ class HashTable
         HashTable (int sizeOfTable)
         {
             this->sizeOfTable = sizeOfTable;
-            values1.assign(sizeOfTable, NULL);
-            values2.assign(sizeOfTable, NULL);
+            values1.assign(sizeOfTable, ValueWrap(0,0));
+            values2.assign(sizeOfTable, ValueWrap(0,0));
         }
 
         int hash (T x, int nm)
@@ -102,7 +102,7 @@ class HashTable
             
             for (typename std::vector<ValueWrap<T>>::iterator it = values1_old.begin() ; it != values1_old.end(); ++it)
             {
-                if (*it != NULL){
+                if (*it.valid == 1){
                     //erase this and call add
                     T x = *it.value;
                     add(x);
@@ -110,7 +110,7 @@ class HashTable
             }
             for (typename std::vector<ValueWrap<T>>::iterator it = values2_old.begin() ; it != values2_old.end(); ++it)
             {
-                if (*it != NULL){
+                if (*it.valid == 1){
                     T x = *it.value;
                     add(x);
                 }
@@ -123,7 +123,7 @@ class HashTable
             {
                 return false;
             }
-            ValueWrap<T> tmp = ValueWrap(x);
+            ValueWrap<T> tmp = ValueWrap(x, 1);
             int LIMIT =  sizeOfTable/2;
             int tableToInsert = hash(x, HASH2)%2; //1 or 2, randomly select the first table to insert
             for (int i = 0; i < LIMIT; i++)
@@ -180,13 +180,13 @@ class HashTable
             int count = 0;
             for (typename std::vector<ValueWrap<T>>::iterator it = values1.begin() ; it != values1.end(); ++it)
             {
-                if (*it != NULL){
+                if (*it.valid ==  1){
                     count ++;
                 }
             }
             for (typename std::vector<ValueWrap<T>>::iterator it = values2.begin() ; it != values2.end(); ++it)
             {
-                if (*it != NULL){
+                if (*it.valid == 1){
                     count ++;
                 }
             }
