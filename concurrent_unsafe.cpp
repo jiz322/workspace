@@ -16,7 +16,6 @@
 #include <cstdlib>
 #include <string>
 #include <stdlib.h>
-#include <atomic>
 
 using namespace std;
 
@@ -213,9 +212,7 @@ int main(int argc, char** argv)
             //10% add
             if (i % 10 ==5)
             {
-                __transaction_atomic{
-                    a.add(2*a.START+i);
-                }
+                a.add(2*a.START+i);
                 //printf("\n add %d", 2*a.START+i);
             }
             //10%remove
@@ -224,16 +221,12 @@ int main(int argc, char** argv)
             //first thread will remove succesfully whereas the rest can not.
             else if (i % 10 == 0)
             {
-                __transaction_atomic{
-                    a.remove(2*a.START+i-5);
-                }
+                a.remove(2*a.START+i-5);
             }
             //80% contains, always true in this serial one
             else
             {
-                __transaction_atomic{
-                    int c = a.contains(i);
-                }
+                int c = a.contains(i);
                 //printf("\n%d",c);
             }
         }
