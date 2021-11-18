@@ -24,7 +24,7 @@ class ValueWrap
 {
     public:
         T value;
-        std::atomic<int> valid;
+        std::atomic_int valid(0);
         ValueWrap (T v, int r)  
         {
             value = v;
