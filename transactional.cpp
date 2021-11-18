@@ -37,8 +37,8 @@ class HashTable
 {
 
     public:
-        std::vector<ValueWrap> values1;
-        std::vector<ValueWrap> values2;
+        std::vector<ValueWrap<T>> values1;
+        std::vector<ValueWrap<T>> values2;
         int sizeOfTable;
         int HASH1 = 2147483647;
         int HASH2 = 479001599;
@@ -95,8 +95,8 @@ class HashTable
         {
             int previousSize = sizeOfTable;
             sizeOfTable = 5*sizeOfTable;
-            vector<ValueWrap> values1_old = values1;
-            vector<ValueWrap> values2_old = values2;
+            vector<ValueWrap<T>> values1_old = values1;
+            vector<ValueWrap<T>> values2_old = values2;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
             
@@ -123,6 +123,7 @@ class HashTable
             {
                 return false;
             }
+            ValueWrap<T> tmp = ValueWrap(x);
             int LIMIT =  sizeOfTable/2;
             int tableToInsert = hash(x, HASH2)%2; //1 or 2, randomly select the first table to insert
             for (int i = 0; i < LIMIT; i++)
@@ -130,7 +131,7 @@ class HashTable
                 int hash1 = hash(x, HASH1); //suprisely, this is a prime number
                 int hash2 = hash(x, HASH2); // another prime number
                 int DEBUG = 0;
-                ValueWrap<T> tmp = ValueWrap(x);
+                
                 if (tableToInsert == 1)
                 {
                     tmp = swap(tmp, hash1, 1);            
