@@ -135,7 +135,7 @@ class HashTable
                 if (tableToInsert == 1)
                 {
                     tmp = swap(tmp, hash1, 1);            
-                    if (tmp == NULL)
+                    if (tmp.valid == 0)
                     {
                         return true;
                     }
@@ -144,7 +144,7 @@ class HashTable
                 else //tableToInsert == 2
                 {
                     tmp = swap(tmp, hash2, 2);
-                    if (tmp == NULL)
+                    if (tmp.valid == 0)
                     {
                         return true;
                     }
