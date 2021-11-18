@@ -224,7 +224,7 @@ int main(int argc, char** argv)
             else if (i % 10 == 0)
             {
                 
-                a.remove(2*a.START+i-5);
+                a.remove(2*a.START+i*2-5);
                 
             }
             //80% contains, always true in this serial one
