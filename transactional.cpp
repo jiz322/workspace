@@ -44,7 +44,7 @@ class HashTable
             return (int)nm%x%sizeOfTable;
         }
 
-        bool contains (T x)
+        [[transaction_safe]] bool contains (T x)
         {
             int hash1 = hash(x, HASH1);
             int hash2 = hash(x, HASH2);
@@ -105,7 +105,7 @@ class HashTable
             }
         }
 
-        bool add (T x)
+        [[transaction_safe]] bool add (T x)
         {
             if (contains(x))
             {
@@ -141,7 +141,7 @@ class HashTable
             return add(x);
         }
 
-        bool remove(T x)
+        [[transaction_safe]] bool remove(T x)
         {
             int hash1 = hash(x, HASH1); 
             int hash2 = hash(x, HASH2);
