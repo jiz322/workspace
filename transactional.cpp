@@ -19,12 +19,13 @@
 
 using namespace std;
 
-class valueWrap
+template <class T>
+class ValueWrap
 {
     public:
-        int value;
+        T value;
         std::atomic<int> removed;
-        valueWrap (int v)  
+        ValueWrap (T v)  
         {
             value = v;
             removed = 0;
@@ -36,8 +37,8 @@ class HashTable
 {
 
     public:
-        std::vector<T> values1;
-        std::vector<T> values2;
+        std::vector<ValueWrap> values1;
+        std::vector<ValueWrap> values2;
         int sizeOfTable;
         int HASH1 = 2147483647;
         int HASH2 = 479001599;
@@ -59,11 +60,11 @@ class HashTable
         {
             int hash1 = hash(x, HASH1);
             int hash2 = hash(x, HASH2);
-            if (values1.at(hash1) == x)
+            if (values1.at(hash1).value == x)
             {
                 return true;
             }
-            else if (values2.at(hash2) == x)
+            else if (values2.at(hash2).value == x)
             {
                 return true;
             }
@@ -72,17 +73,17 @@ class HashTable
 
 
         //swap value
-        T swap(T x, int i, int table)
+        ValueWrap<T> swap(ValueWrap<T> x, int i, int table)
         {
             if (table == 1)
             {
-                T ret = values1.at(i);
+                ValueWrap<T> ret = values1.at(i);
                 values1.at(i) =  x;
                 return  ret;
             }
             else
             {
-                T ret = values2.at(i);
+                ValueWrap<T> ret = values2.at(i);
                 values2.at(i) =  x;
                 return  ret;
             }
@@ -94,23 +95,23 @@ class HashTable
         {
             int previousSize = sizeOfTable;
             sizeOfTable = 5*sizeOfTable;
-            vector<T> values1_old = values1;
-            vector<T> values2_old = values2;
+            vector<ValueWrap> values1_old = values1;
+            vector<ValueWrap> values2_old = values2;
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
             
-            for (typename std::vector<T>::iterator it = values1_old.begin() ; it != values1_old.end(); ++it)
+            for (typename std::vector<ValueWrap>::iterator it = values1_old.begin() ; it != values1_old.end(); ++it)
             {
                 if (*it != NULL){
                     //erase this and call add
-                    T x = *it;
+                    T x = *it.value;
                     add(x);
                 }
             }
             for (typename std::vector<T>::iterator it = values2_old.begin() ; it != values2_old.end(); ++it)
             {
                 if (*it != NULL){
-                    T x = *it;
+                    T x = *it.value;
                     add(x);
                 }
             }
@@ -129,10 +130,11 @@ class HashTable
                 int hash1 = hash(x, HASH1); //suprisely, this is a prime number
                 int hash2 = hash(x, HASH2); // another prime number
                 int DEBUG = 0;
+                ValueWrap<T> tmp = ValueWrap(x);
                 if (tableToInsert == 1)
                 {
-                    x = swap(x, hash1, 1);            
-                    if (x == NULL)
+                    tmp = swap(tmp, hash1, 1);            
+                    if (tmp == NULL)
                     {
                         return true;
                     }
@@ -140,8 +142,8 @@ class HashTable
                 }
                 else //tableToInsert == 2
                 {
-                    x = swap(x, hash2, 2);
-                    if (x == NULL)
+                    tmp = swap(tmp, hash2, 2);
+                    if (tmp == NULL)
                     {
                         return true;
                     }
@@ -149,19 +151,19 @@ class HashTable
                 }
             }
             resize();
-            return add(x);
+            return add(tmp.value);
         }
 
         bool remove(T x)
         {
             int hash1 = hash(x, HASH1); 
             int hash2 = hash(x, HASH2);
-            if (values1.at(hash1) == x)
+            if (values1.at(hash1).value == x)
             {
                 swap(NULL, hash1, 1);
                 return true;
             }
-            else if(values2.at(hash2) == x)
+            else if(values2.at(hash2).value == x)
             {
                 swap(NULL, hash2, 2);
                 return true;
@@ -175,13 +177,13 @@ class HashTable
         int size()
         {
             int count = 0;
-            for (typename std::vector<T>::iterator it = values1.begin() ; it != values1.end(); ++it)
+            for (typename std::vector<ValueWrap>::iterator it = values1.begin() ; it != values1.end(); ++it)
             {
                 if (*it != NULL){
                     count ++;
                 }
             }
-            for (typename std::vector<T>::iterator it = values2.begin() ; it != values2.end(); ++it)
+            for (typename std::vector<ValueWrap>::iterator it = values2.begin() ; it != values2.end(); ++it)
             {
                 if (*it != NULL){
                     count ++;
