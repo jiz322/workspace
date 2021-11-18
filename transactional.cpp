@@ -30,7 +30,7 @@ class valueWrap
             removed = 0;
         } 
 
-}
+};
 template <class T>
 class HashTable
 {
