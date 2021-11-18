@@ -1,3 +1,4 @@
+#include <atomic>
 int main(int argc, char** argv) 
 {
     atomic<int> x = 0;
