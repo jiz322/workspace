@@ -61,7 +61,7 @@ class HashTable
 
 
         //swap value
-        T swap(T x, int i, int table)
+        [[transaction_safe]] T swap(T x, int i, int table)
         {
             if (table == 1)
             {
@@ -79,7 +79,7 @@ class HashTable
 
         //double the sizeOfTable of both table
         //have to compute 
-        void resize ()
+        [[transaction_safe]] void resize ()
         {
             int previousSize = sizeOfTable;
             sizeOfTable = 5*sizeOfTable;
