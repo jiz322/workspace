@@ -19,13 +19,25 @@
 
 using namespace std;
 
+class valueWrap
+{
+    public:
+        int value;
+        std::atomic<int> removed;
+        valueWrap (int v)  
+        {
+            value = v;
+            removed = 0;
+        } 
+
+}
 template <class T>
 class HashTable
 {
 
     public:
-        std::atomic<vector<T>> values1;
-        std::atomic<vector<T>> values2;
+        std::vector<T> values1;
+        std::vector<T> values2;
         int sizeOfTable;
         int HASH1 = 2147483647;
         int HASH2 = 479001599;
