@@ -159,14 +159,16 @@ class HashTable
         {
             int hash1 = hash(x, HASH1); 
             int hash2 = hash(x, HASH2);
+            ValueWrap<T> tmp = ValueWrap(0, 0);
             if (values1.at(hash1).value == x)
             {
-                swap(NULL, hash1, 1);
+                
+                swap(tmp, hash1, 1);
                 return true;
             }
             else if(values2.at(hash2).value == x)
             {
-                swap(NULL, hash2, 2);
+                swap(tmp, hash2, 2);
                 return true;
             }
             else
