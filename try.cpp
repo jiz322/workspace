@@ -1,5 +1,6 @@
 int main(int argc, char** argv) 
 {
+    atomic<int> x = 0;
     __transaction_relaxed {
     x = 1;
     while (x != 0) {}
