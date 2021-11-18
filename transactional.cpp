@@ -102,16 +102,16 @@ class HashTable
             
             for (typename std::vector<ValueWrap<T>>::iterator it = values1_old.begin() ; it != values1_old.end(); ++it)
             {
-                if (*it.valid == 1){
+                if ((*it).valid == 1){
                     //erase this and call add
-                    T x = *it.value;
+                    T x = (*it).value;
                     add(x);
                 }
             }
             for (typename std::vector<ValueWrap<T>>::iterator it = values2_old.begin() ; it != values2_old.end(); ++it)
             {
-                if (*it.valid == 1){
-                    T x = *it.value;
+                if ((*it).valid == 1){
+                    T x = (*it).value;
                     add(x);
                 }
             }
@@ -180,13 +180,13 @@ class HashTable
             int count = 0;
             for (typename std::vector<ValueWrap<T>>::iterator it = values1.begin() ; it != values1.end(); ++it)
             {
-                if (*it.valid ==  1){
+                if ((*it).valid ==  1){
                     count ++;
                 }
             }
             for (typename std::vector<ValueWrap<T>>::iterator it = values2.begin() ; it != values2.end(); ++it)
             {
-                if (*it.valid == 1){
+                if ((*it).valid == 1){
                     count ++;
                 }
             }
