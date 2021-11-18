@@ -192,8 +192,8 @@ class HashTable
 int main(int argc, char** argv) 
 {
     //Expected final size is about populated + (WORKS -  populated)/10
-    int WORKS = 20000000;
-    int POPULATE = 10000000;
+    int WORKS = 20000;
+    int POPULATE = 100;
     int NUM_THREAD = 8;
     int STEP = WORKS/NUM_THREAD;
     HashTable <int> a = HashTable<int>(4000);
