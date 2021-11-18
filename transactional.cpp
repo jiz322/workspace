@@ -100,7 +100,7 @@ class HashTable
             values1.assign(sizeOfTable, NULL);
             values2.assign(sizeOfTable, NULL);
             
-            for (typename std::vector<ValueWrap>::iterator it = values1_old.begin() ; it != values1_old.end(); ++it)
+            for (typename std::vector<ValueWrap<T>>::iterator it = values1_old.begin() ; it != values1_old.end(); ++it)
             {
                 if (*it != NULL){
                     //erase this and call add
@@ -108,7 +108,7 @@ class HashTable
                     add(x);
                 }
             }
-            for (typename std::vector<T>::iterator it = values2_old.begin() ; it != values2_old.end(); ++it)
+            for (typename std::vector<ValueWrap<T>>::iterator it = values2_old.begin() ; it != values2_old.end(); ++it)
             {
                 if (*it != NULL){
                     T x = *it.value;
@@ -178,13 +178,13 @@ class HashTable
         int size()
         {
             int count = 0;
-            for (typename std::vector<ValueWrap>::iterator it = values1.begin() ; it != values1.end(); ++it)
+            for (typename std::vector<ValueWrap<T>>::iterator it = values1.begin() ; it != values1.end(); ++it)
             {
                 if (*it != NULL){
                     count ++;
                 }
             }
-            for (typename std::vector<ValueWrap>::iterator it = values2.begin() ; it != values2.end(); ++it)
+            for (typename std::vector<ValueWrap<T>>::iterator it = values2.begin() ; it != values2.end(); ++it)
             {
                 if (*it != NULL){
                     count ++;
