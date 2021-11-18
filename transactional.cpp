@@ -43,26 +43,24 @@ class HashTable
             return (int)nm%x%sizeOfTable;
         }
 
-        [[transaction_safe]] bool contains (T x)
+        bool contains (T x)
         {
             int hash1 = hash(x, HASH1);
             int hash2 = hash(x, HASH2);
-            __transaction_atomic{
-                if (values1.at(hash1) == x)
-                {
-                    return true;
-                }
-                else if (values2.at(hash2) == x)
-                {
-                    return true;
-                }
+            if (values1.at(hash1) == x)
+            {
+                return true;
+            }
+            else if (values2.at(hash2) == x)
+            {
+                return true;
             }
             return false;
         }
 
 
         //swap value
-        [[transaction_safe]] T swap(T x, int i, int table)
+        T swap(T x, int i, int table)
         {
             if (table == 1)
             {
@@ -80,7 +78,7 @@ class HashTable
 
         //double the sizeOfTable of both table
         //have to compute 
-        [[transaction_safe]] void resize ()
+        void resize ()
         {
             int previousSize = sizeOfTable;
             sizeOfTable = 5*sizeOfTable;
@@ -106,7 +104,7 @@ class HashTable
             }
         }
 
-        [[transaction_safe]] bool add (T x)
+        bool add (T x)
         {
             if (contains(x))
             {
@@ -142,7 +140,7 @@ class HashTable
             return add(x);
         }
 
-        [[transaction_safe]] bool remove(T x)
+        bool remove(T x)
         {
             int hash1 = hash(x, HASH1); 
             int hash2 = hash(x, HASH2);
@@ -214,9 +212,9 @@ int main(int argc, char** argv)
             //10% add
             if (i % 10 ==5)
             {
-                __transaction_atomic{
-                    a.add(2*a.START+i);
-                }
+                
+                a.add(2*a.START+i);
+                
                 //printf("\n add %d", 2*a.START+i);
             }
             //10%remove
@@ -225,16 +223,16 @@ int main(int argc, char** argv)
             //first thread will remove succesfully whereas the rest can not.
             else if (i % 10 == 0)
             {
-                __transaction_atomic{
-                    a.remove(2*a.START+i-5);
-                }
+                
+                a.remove(2*a.START+i-5);
+                
             }
             //80% contains, always true in this serial one
             else
             {
-                __transaction_atomic{
-                    int c = a.contains(i);
-                }
+                
+                int c = a.contains(i);
+                
                 //printf("\n%d",c);
             }
         }
