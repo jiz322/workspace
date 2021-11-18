@@ -47,13 +47,15 @@ class HashTable
         {
             int hash1 = hash(x, HASH1);
             int hash2 = hash(x, HASH2);
-            if (values1.at(hash1) == x)
-            {
-                return true;
-            }
-            else if (values2.at(hash2) == x)
-            {
-                return true;
+            __transaction_atomic{
+                if (values1.at(hash1) == x)
+                {
+                    return true;
+                }
+                else if (values2.at(hash2) == x)
+                {
+                    return true;
+                }
             }
             return false;
         }
