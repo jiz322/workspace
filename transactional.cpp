@@ -1,4 +1,4 @@
-
+//Error: use of deleted function
 #include <math.h>
 #include <algorithm>
 #include <stdio.h>
@@ -24,7 +24,7 @@ class ValueWrap
 {
     public:
         T value;
-        std::atomic<int> valid =  0;
+        int valid =  0;
         ValueWrap (T v, int r)  
         {
             value = v;
