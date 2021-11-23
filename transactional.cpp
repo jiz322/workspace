@@ -97,8 +97,9 @@ class HashTable
             sizeOfTable = 5*sizeOfTable;
             vector<ValueWrap<T>> values1_old = values1;
             vector<ValueWrap<T>> values2_old = values2;
-            values1.assign(sizeOfTable, NULL);
-            values2.assign(sizeOfTable, NULL);
+            ValueWrap<T> tmp = ValueWrap(0, 0);
+            values1.assign(sizeOfTable, tmp);
+            values2.assign(sizeOfTable, tmp);
             
             for (typename std::vector<ValueWrap<T>>::iterator it = values1_old.begin() ; it != values1_old.end(); ++it)
             {
